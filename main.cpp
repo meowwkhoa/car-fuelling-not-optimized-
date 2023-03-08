@@ -10,9 +10,9 @@ int compute_min_refills(int dist, int tank, vector<int> & stops, int n) {
     // write your code here
     int numberOfStops = 0;
     stops.push_back(dist);
-    int temp = - 1;    //index of starts
+    int temp = 0;    //index of starts
     
-    int left, right;
+    int left, right = 0;
     while(right < dist){
         if(numberOfStops == 0){
             left = 0;
@@ -26,7 +26,7 @@ int compute_min_refills(int dist, int tank, vector<int> & stops, int n) {
         if(left < dist)
             numberOfStops++;
         
-        if(temp == n - 1 && right < dist)
+        if(stops[temp + 1] - stops[temp] > tank)
             return -1;
         
         for(int i = temp; stops[i] <= right; i++)
